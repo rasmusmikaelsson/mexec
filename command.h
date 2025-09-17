@@ -1,3 +1,14 @@
+/**
+ * command.h
+ * 
+ * Header file for command handling functions in mexec. Defines functions for
+ * reading commands from a file, executing commands, and freeing allocated
+ * memory for commands.
+ * 
+ * Version:     2025-09-17
+ * Author:      Rasmus Mikaelsson (et24rmn)
+ */
+
 #ifndef COMMAND_H
 #define COMMAND_H
 

@@ -1,4 +1,6 @@
 /**
+ * command.c
+ * 
  * Command handling functions for inter-process communication.
  * Includes functions to execute commands and read commands from a file.
  * Uses pipes for communication between child processes.
