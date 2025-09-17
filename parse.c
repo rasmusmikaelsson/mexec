@@ -1,3 +1,15 @@
+/** 
+ * parse.c
+ * 
+ * This file contains the implementation of the parse_line function, which
+ * parses a given input line into an array of arguments.
+ * 
+ * Version: 2025-09-15
+ *          2025-09-16 (Final version)
+ *
+ * Author:  Rasmus Mikaelsson (et24rmn)
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,13 +18,6 @@
 
 #define MAX_LINE_LENGTH 1024
 
-/**
- * Parse a line into command and arguments
- * Returns a NULL-terminated array of strings
- * 
- * @param line The line to parse
- * @return A NULL-terminated array of strings
- */
 char **parse_line(char *line) {
     // Remove newline character if present
     line[strcspn(line, "\n")] = 0;
