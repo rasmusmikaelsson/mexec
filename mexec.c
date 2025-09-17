@@ -115,9 +115,17 @@ int main(int argc, char *argv[]) {
                 free_commands(commands, cmd_count);
                 exit(EXIT_FAILURE);
             }
+
+            if (WIFEXITED(status) && WEXITSTATUS(status) != 0) {
+                // One child failed, exit with its code
+                free_commands(commands, cmd_count);
+                return WEXITSTATUS(status);
+            }
         }
     }
     if (prev_fd != -1) close(prev_fd); // Close last read end if open
+
+    
 
     // Free allocated memory at the end
     free_commands(commands, cmd_count);

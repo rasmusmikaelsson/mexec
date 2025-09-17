@@ -47,9 +47,10 @@ void execute_command(int child_to_child[], char **resultingLine) {
         exit(EXIT_FAILURE);
     }
     close(child_to_child[WRITE_END]);
-    execvp(resultingLine[0], resultingLine);
-    perror("execvp failed");
-    exit(EXIT_FAILURE);
+    if(execvp(resultingLine[0], resultingLine) == -1){
+        perror("execvp failed");
+        exit(EXIT_FAILURE);
+    }
 }
 
 /**
