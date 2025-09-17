@@ -1,4 +1,6 @@
 /**
+ * mexec.c
+ * 
  * A program that reads commands from a file and executes them in a pipeline.
  * If no file is provided, it reads commands from standard input.
  * Each command's output is piped to the next command's input.
