@@ -108,13 +108,6 @@ int main(int argc, char *argv[]) {
                 close(child_to_child[WRITE_END]);
                 prev_fd = child_to_child[READ_END];
             }
-            
-            // Wait for this specific child
-            // if (WIFEXITED(status) && WEXITSTATUS(status) != 0) {
-            //     // One child failed, exit with its code
-            //     free_commands(commands, cmd_count);
-            //     return WEXITSTATUS(status);
-            // }
         }
     }
     if (prev_fd != -1) close(prev_fd); // Close last read end if open
