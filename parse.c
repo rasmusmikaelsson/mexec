@@ -18,6 +18,13 @@
 
 #define MAX_LINE_LENGTH 1024
 
+/**
+ * parse_line - Parses a given input line into an array of arguments.
+ * @line: Input string containing a command and its arguments.
+ *
+ * Returns a pointer to a static array of strings representing the arguments.
+ * Note: The returned array points to static memory and is overwritten on each call.
+ */
 char **parse_line(char *line) {
     // Remove newline character if present
     line[strcspn(line, "\n")] = 0;

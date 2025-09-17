@@ -1,4 +1,6 @@
 /**
+ * parse.h
+ * 
  * Parse a line into command and arguments
  * Returns a NULL-terminated array of strings
  * 

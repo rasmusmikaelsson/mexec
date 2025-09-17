@@ -1,4 +1,6 @@
 /**
+ * pipeline.h
+ * 
  * Pipeline handling functions.
  * Includes functions to redirect input and output for pipes.
  * 

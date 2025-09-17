@@ -1,4 +1,6 @@
 /**
+ * error_handler.h
+ * 
  * Header file for error handling functions.
  * Provides declarations for functions that validate file operations
  * and memory allocations.
