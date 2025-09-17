@@ -46,6 +46,7 @@
 int main(int argc, char *argv[]) {
     FILE *file = stdin;
     
+    
     if (argc == 2) {
         file = fopen(argv[1], "r");
         validate_file(file);
@@ -64,7 +65,6 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < cmd_count; i++) {
         int child_to_child[2] = {-1, -1};
         pid_t pid;
-        int status;
 
         // Create a pipe if not the last command
         if (i < cmd_count - 1) {
@@ -110,25 +110,30 @@ int main(int argc, char *argv[]) {
             }
             
             // Wait for this specific child
-            if (waitpid(pid, &status, 0) == -1) {
-                perror("waitpid");
-                free_commands(commands, cmd_count);
-                exit(EXIT_FAILURE);
-            }
-
-            if (WIFEXITED(status) && WEXITSTATUS(status) != 0) {
-                // One child failed, exit with its code
-                free_commands(commands, cmd_count);
-                return WEXITSTATUS(status);
-            }
+            // if (WIFEXITED(status) && WEXITSTATUS(status) != 0) {
+            //     // One child failed, exit with its code
+            //     free_commands(commands, cmd_count);
+            //     return WEXITSTATUS(status);
+            // }
         }
     }
     if (prev_fd != -1) close(prev_fd); // Close last read end if open
 
-    
+    int exit_code = 0;
+    for (int i = 0; i < cmd_count; i++) {
+        int status;
+        if (wait(&status) == -1) {
+            perror("waitpid");
+            exit(EXIT_FAILURE);
+        }
+        if (WIFEXITED(status) && WEXITSTATUS(status) != 0) {
+            exit_code = WEXITSTATUS(status);
+        }
+    }
+
 
     // Free allocated memory at the end
     free_commands(commands, cmd_count);
 
-    return 0;
+    return exit_code;
 }
