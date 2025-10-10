@@ -13,6 +13,8 @@
 #ifndef ERROR_HANDLER_H
 #define ERROR_HANDLER_H
 
+#include <stdio.h>
+
 /**
  * Validates if a file was opened successfully.
  * If the file is NULL, prints an error message and exits.

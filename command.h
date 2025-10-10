@@ -29,7 +29,7 @@ void free_commands(char **commands, int cmd_count);
  * @param resultingLine The command to execute
  * @return nothing, exits on failure
  */
-void execute_command(int child_to_child[], char **resultingLine);
+int execute_command(int child_to_child[], char **resultingLine, char **commands, int cmd_count);
 
 /**
  * Read commands from a file

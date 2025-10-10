@@ -39,17 +39,20 @@ void free_commands(char **commands, int cmd_count) {
  * @param resultingLine The command to execute
  * @return nothing, exits on failure
  */
-void execute_command(int child_to_child[], char **resultingLine) {
+int execute_command(int child_to_child[], char **resultingLine, char **commands, int cmd_count) {
     close(child_to_child[READ_END]);
     if (dup2(child_to_child[WRITE_END], STDOUT_FILENO) == -1) {
         perror("dup2 failed");
-        exit(EXIT_FAILURE);
+		free_commands(commands, cmd_count);
+		return 1;
     }
     close(child_to_child[WRITE_END]);
     if(execvp(resultingLine[0], resultingLine) == -1){
         perror("execvp failed");
-        exit(EXIT_FAILURE);
+		free_commands(commands, cmd_count);
+		return 1;
     }
+	return 0;
 }
 
 /**
@@ -87,3 +90,4 @@ int read_commands(FILE *file, char ***commands_ptr) {
     *commands_ptr = commands;
     return (int)cmd_count;
 }
+
