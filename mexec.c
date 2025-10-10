@@ -1,7 +1,5 @@
 /**
- * mexec.c
- * 
- * A program that reads commands from a file and executes them in a pipeline.
+ * mexec.c - A program that reads commands from a file and executes them in a pipeline.
  * If no file is provided, it reads commands from standard input.
  * Each command's output is piped to the next command's input.
  * The last command outputs to standard output.
@@ -35,16 +33,14 @@
 #define RESET   "\x1b[0m"
 
 /**
- * Main program
- * Reads commands from a file and executes them in a pipeline
+ * Main program - Reads commands from a file and executes them in a pipeline
  * 
  * @param argc Argument count
  * @param argv Argument vector
  * @return 0 on success, 1 on failure (EXIT_FAILURE)
  */
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv) {
     FILE *file = stdin;
-    
     
     if (argc == 2) {
         file = fopen(argv[1], "r");
