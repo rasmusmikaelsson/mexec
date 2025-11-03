@@ -1,3 +1,2 @@
-cat -n mexec.c
-grep -B4 -A2 return
-less
+seq 1 100
+tail -n 3
